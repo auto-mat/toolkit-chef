@@ -1,6 +1,6 @@
 myhostname = www.cyklistesobe.cz
 mydomain = cyklistesobe.cz
-myorigin = $mydomain
+myorigin = /etc/mailname
 
 smtpd_banner = $myhostname ESMTP $mail_name
 biff = no
@@ -8,15 +8,15 @@ append_dot_mydomain = no
 
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-mydestination = localdomain, localhost, localhost.localdomain, localhost
+mydestination = localdomain, localhost, localhost.localdomain, localhost, cyklistesobe.cz, www.cyklistesobe.cz
 mynetworks = 127.0.0.0/8 [::1]/128
 mailbox_size_limit = 0
 recipient_delimiter = +
 
 # We only use postfix for sending from the web app, not receiving.
-inet_interfaces = loopback-only
+inet_interfaces = all
 
-relayhost = [mx.mythic-beasts.com]
+relayhost = 
 smtp_connection_cache_destinations = mx.mythic-beasts.com
 #smtp_sasl_auth_enable = yes
 #smtp_sasl_password_maps = static:YOUR_AUTHSMPT_USER_ID:YOUR_AUTHSMTP_PW
@@ -25,3 +25,4 @@ smtp_connection_cache_destinations = mx.mythic-beasts.com
 default_destination_concurrency_limit = 4
 
 soft_bounce = yes
+inet_protocols = all
