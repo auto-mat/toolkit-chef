@@ -1,4 +1,4 @@
-myhostname = www.cyklistesobe.cz
+myhostname = cyklistesobe.cz
 mydomain = cyklistesobe.cz
 myorigin = /etc/mailname
 
@@ -8,8 +8,10 @@ append_dot_mydomain = no
 
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-mydestination = localdomain, localhost, localhost.localdomain, localhost, cyklistesobe.cz, www.cyklistesobe.cz
-mynetworks = 127.0.0.0/8 [::1]/128
+
+mydestination = localdomain, localhost, localhost.localdomain, localhost
+   #, cyklistesobe.cz, www.cyklistesobe.cz
+mynetworks = 127.0.0.0/8 [::1]/128 130.193.12.163/32 [2a03:b780:0001:0000:216:3eff:fe00:7a3]/128
 mailbox_size_limit = 0
 recipient_delimiter = +
 
@@ -18,11 +20,17 @@ inet_interfaces = all
 
 relayhost = 
 smtp_connection_cache_destinations = mx.mythic-beasts.com
-#smtp_sasl_auth_enable = yes
-#smtp_sasl_password_maps = static:YOUR_AUTHSMPT_USER_ID:YOUR_AUTHSMTP_PW
-#smtp_sasl_security_options = noanonymous
 
 default_destination_concurrency_limit = 4
 
 soft_bounce = yes
 inet_protocols = all
+
+
+# luser_relay = notifications@cyklistesobe.cz
+virtual_mailbox_domains = /etc/postfix/vhosts
+virtual_mailbox_base = /home/vmail
+virtual_mailbox_maps = regexp:/etc/postfix/vmaps
+virtual_minimum_uid = 1000
+virtual_uid_maps = static:5000
+virtual_gid_maps = static:5000
