@@ -4,13 +4,19 @@
 #
 # Copyright 2011, Cyclestreets Ltd
 
-if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
-  pg_version = '9.4'
-  postgis_pkg = 'postgresql-9.4-postgis-2.1'
-  node.default['postgres']['script_dir'] = '/usr/share/postgresql/9.4/contrib/postgis-2.1'
+if node['platform'] == 'ubuntu' && node['platform_version'] == '18.04'
+  pg_version = '10'
+  postgis_pkg = 'postgresql-10-postgis-2.4'
+  node.default['postgres']['script_dir'] = '/usr/share/postgresql/10/contrib/postgis-2.4'
 else
-  pg_version = '9.1'
-  postgis_pkg = 'postgresql-9.1-postgis'
+  if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
+     pg_version = '9.4'
+     postgis_pkg = 'postgresql-9.4-postgis-2.1'
+     node.default['postgres']['script_dir'] = '/usr/share/postgresql/9.4/contrib/postgis-2.1'
+  else
+     pg_version = '9.1'
+     postgis_pkg = 'postgresql-9.1-postgis'
+  end
 end
 
 package "postgresql-#{pg_version}" do

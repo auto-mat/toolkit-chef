@@ -10,7 +10,7 @@ include_recipe 'ssl'
 include_recipe 'apache2'
 include_recipe 'postgres'
 include_recipe 'ntp'
-include_recipe 'java'
+# include_recipe 'java'
 include_recipe 'brightbox-ruby::default'
 gem_package 'rack' do
   action :install
@@ -52,7 +52,7 @@ package 'redis-server'
 package 'imagemagick'
 
 # mailx - not actually for the app, just for some other scripts we have
-package 'heirloom-mailx'
+# package 'heirloom-mailx'
 
 # git - useful when running testing the scripts with Vagrant. Normally
 # installed manually in order to acquire the cookbooks, as per README
