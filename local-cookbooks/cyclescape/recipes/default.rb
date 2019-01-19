@@ -142,11 +142,12 @@ template deploy_dir + "/shared/config/schedule.yml" do
   )
 end
 
-deploy_branch = (node['cyclescape']['environment'] == 'staging') ? 'staging' : 'master'
+#deploy_branch = (node['cyclescape']['environment'] == 'staging') ? 'staging' : 'master'
+deploy_branch = 'deploy'
 
 deploy_revision deploy_dir do
   bundler_depot = shared_path + '/bundle'
-  repo 'https://github.com/cyclestreets/cyclescape.git'
+  repo 'https://github.com/auto-mat/toolkit.git'
   revision deploy_branch
   user 'cyclescape'
   group 'cyclescape'
